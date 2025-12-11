@@ -1,4 +1,3 @@
-from collections import defaultdict
 from functools import cache
 
 conns: dict[str, list[str]] = {}

@@ -9,17 +9,17 @@ presents_area = [sum(row.count('#') for row in present) for present in presents]
 
 for line in regions_data.splitlines():
     size, counts = line.split(": ")
-    ax, ay = map(int, size.split("x"))
-    regions.append((ax, ay, [int(c) for c in counts.split(" ")]))
+    w, h = map(int, size.split("x"))
+    regions.append((w, h, [int(c) for c in counts.split(" ")]))
 
 not_possible = 0
 possible = 0
 to_check = 0
 for region in regions:
-    ax, ay, counts = region
-    area = ax * ay
+    w, h, counts = region
+    area = w * h
     min_needed_area = sum(a*b for a, b in zip(presents_area, counts))
-    n = (ax // 3) * (ay // 3)  # number of available 3x3 squares
+    n = (w // 3) * (h // 3)  # number of available 3x3 squares
     if area < min_needed_area:
         not_possible += 1
     elif n >= sum(counts):
